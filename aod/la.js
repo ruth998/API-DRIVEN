@@ -1,7 +1,7 @@
 const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
-const message = document.getElementById("message");
-const results = document.getElementById("results");
+const searchBtn = document.getElementById("searchButton");
+const message = document.getElementById("statusMessage");
+const results = document.getElementById("resultsContainer");
 
 searchBtn.addEventListener("click", async () => {
   const query = searchInput.value.trim();
@@ -26,27 +26,25 @@ searchBtn.addEventListener("click", async () => {
 
     const data = await response.json();
 
-    message.textContent = "Results loaded.";
-    results.innerHTML = JSON.stringify(data, null, 2);
+    if (!data.search || data.search.length === 0) {
+      message.textContent = "No results found.";
+      return;
+    }
+
+    message.textContent = `Found ${data.search.length} result(s).`;
+
+    results.innerHTML = data.search.map(item => `
+      <div class="card">
+        <h3>${item.title}</h3>
+        <p>${item.description || ""}</p>
+        <img src="${item.image}" alt="${item.title}" width="200" />
+      </div>
+    `).join("");
 
   } catch (error) {
     message.textContent = "Something went wrong while searching.";
+    console.error(error);
   } finally {
     console.log("Search request finished.");
   }
 });
-
-if (!data.search || data.search.length === 0) {
-  status.textContent = "No results found.";
-  return;
-}
-
-status.textContent = `Found ${data.search.length} result(s).`;
-
-results.innerHTML = data.search.map(item => `
-  <div class="card">
-    <h3>${item.title}</h3>
-    <p>${item.description || ""}</p>
-    <img src="${item.image}" alt="${item.title}" width="200" />
-  </div>
-`).join("");
