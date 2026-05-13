@@ -37,7 +37,7 @@ searchBtn.addEventListener("click", async () => {
       <div class="card">
         <h3>${item.title}</h3>
         <p>${item.description || ""}</p>
-        <img src="${item.image}" alt="${item.title}" width="200" />
+        ${item.image ? `<img src="${item.image}" alt="${item.title}" />` : ""}
       </div>
     `).join("");
 
