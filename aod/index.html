@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API Search UI</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -14,14 +14,15 @@
     <p>Search for data using a public API.</p>
 
     <div class="search-box">
-      <input type="text" placeholder="Enter a search term">
-      <button>Search</button>
+      <input type="text" id="searchInput" placeholder="Enter a search term" />
+      <button id="searchButton">Search</button>
     </div>
 
     <div id="statusMessage"></div>
-
     <div id="resultsContainer"></div>
   </div>
+
+  <script src="la.js"></script>
 
 </body>
 </html>
